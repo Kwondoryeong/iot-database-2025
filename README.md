@@ -151,7 +151,7 @@ IoT 개발자 데이터베이스 저장소
           FROM 테이블명(들)
         [WHERE 검색조건(들)]
         [GROUP BY 속성명(들)]
-        [HAVING 집계함수 검색조건(들)]
+        [HAVING 집계함수 검색조건(들)] -> 집계함수는 WHERE절 아닌 HAVING에 사용
         [ORDER BY 속성명(들) [ASC|DESC]] 
         ```
 
@@ -159,7 +159,82 @@ IoT 개발자 데이터베이스 저장소
         - 쿼리 연습(집계함수부터) : [SQL](./day02/db03_select_집계함수부터.sql)
 
 ## 3일차
+- Visual Studio Code에서 MySQL 연동
+    - 확장 > MySQL 검색
+        - Weijan Chen 개인 개발자가 만든 Database Client 설치, MySQL 확장도 준수
+            - 데이터베이스 아이콘 생성
+        - Database Client는 많은 DB연결이 가능
+    - Database Client
+        1. 툴바의 Database 아이콘 클릭
+        2. Create Connection 클릭
+        3. 정보 입력 > 연결 테스트
+
+            <img src='./image/db002.png' width='600'>
+
+        4. Workbench 처럼 사용
+
+            <img src='./image/db003.png' width='600'>
+
 - SQL 기초
-    - DDL
+    - 기본 데이터 형
+        - 데이터베이스에는 많은 데이터형 존재(데이터의 사이즈 저장용량을 절약하기 위해서)
+        - 주요 데이터형
+            - SmallInt(2Byte) - 65535가지 수(음수 포함) 저장(-32768 ~ 32767)
+            - **Int(4Byte)** - 42억 정수(음수포함) 저장
+            - BigInt(8Byte) - Int보다 더 큰수 저장
+            - Float(4Byte) - 소수점 아래 7자리 저장
+            - Decimal(5~17Byte) - Float보다 더 큰 수 저장 시
+            - Char(n) - n은 가변(1~255). 고정 길이 문자열
+                - 주의점! Char(10)에 Hello 글자 입력하면 **'Hello     '** 공백포함되어 저장
+            - Varchar(n) - n(0~65535). 가변 길이 문자열
+                - 주의점! VarChar(10)에 Hello 입력 시 **'Hello'** 저장
+            - LongText(최대4GB) - 가변 길이, 뉴스나 영화 스크립트 저장
+            - LongBlob(최대4GB) - mp3, mp4 음악, 영화 데잍 자체 저장 시 사용
+            - Date(3) - 년-월-일 까지 저장하는 타입
+            - DateTime(8) - 년-월-일 시:분:초 까지 저장
+            - JSON(8) - json(파이썬 딕셔너리와 유사, 키 값 쌍) 타입 데이터를 저장
+    - DDL 중 CREATE
+        ```sql
+        CREATE DATABASE 데이터베이스 명
+        [몇가지 사항];
+
+        CREATE TABLE 테이블 명
+        (
+            컬럼(속성)명 제약사항들, ...
+            PRIMARY KEY (컬럼(들))
+            FOREIGN KEY (컬럼(들)) REFERENCES 테이블명(컬럼(들)) ON 제약사항 (DELETE, UPDATE, DEFAULT, CASCADE)
+        );
+        ```
+
+        - 테이블 생성 후 확인
+            1. 메뉴 Database > Reverse Engineer(데이터베이스를 ERD 변경) 클릭 <-> Forward Engineer(ERD -> DB)
+            2. 연결은 패스
+            3. Select Schemas to RE 에서 특정 DB를 체크
+            4. Execute
+            5. ERD 확인
+
+            <img src='./image/db004.png' width='600'>
+
+    - DDL 중 ALTER
+        ```sql
+        ALTER DATABASE 데이터베이스 명
+        [몇가지 사항];
+
+        CREATE [TABLE] 테이블명
+            [ADD 속성명 데이터타입]
+            [DROP COLUMN 속성명]
+            [ALTER COLUMN 속성명 데이터타입]
+            -- ...
+        ```
+    - DDL 중 DROP
+        ```sql
+        DROP [DATABASE|TABLE|INDEX] 개체 명
+        ```
+
     - DML 중 INSERT, UPDATE, DELETE
 - SQL 고급
+    - 내장함수, NULL
+
+## 4일차
+- SQL 고급
+    - 행번호출력...
