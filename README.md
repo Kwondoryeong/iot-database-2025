@@ -301,7 +301,7 @@ IoT 개발자 데이터베이스 저장소
     - 리턴문을 쓸 수 있으면 함수, 아니면 프로시저
     - 프로시저에서도 값을 반환하려면 OUT 파라미터 선언
     - 저장 프로시저 계속
-        - 결과를 반환하는 프로시저[SQL](./day05/db01_stored_procedure3.sql)
+        - 결과를 반환하는 프로시저 : [SQL](./day05/db01_stored_procedure3.sql)
         - 커서사용 프로시저 : [SQL](./day05/db02_stored_procedure4.sql)
     - 트리거 : [SQL](./day05/db03_trigger.sql)
     - 사용자 정의함수 : [SQL](./day05/db04_user_defined_function.sql)
