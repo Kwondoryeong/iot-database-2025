@@ -329,11 +329,37 @@ IoT 개발자 데이터베이스 저장소
     - ERWin 설계 실습 : [ERWin](./day05/madangstore.erwin)
 
 ## 6일차
-- 데이터 모델링 계속
-    - 마당대학 데이터베이스
-- 정규화
-- 트랜잭션
+- 데이터 모델링 계속 : [SQL](./day06/마당대학교.sql)
+    - 마당대학 데이터베이스 with Workbench : db01_madang_university.mwb(MySQL Workbench Model)
+    - Forward Engineering 으로 DB 생성 확인
+- 정규화 : [SQL](./day06/db03_정규화_이상현상.sql)
+    - 이상현상 : 삽입이상, 삭제이상, 수정이상
+        - 정규화를 제대로 못한 DB면 발생 가능
+    - 함수 종속성 - 하나의 속성(A)이 다른 속성(B)을 결정지으면 A는 B의 결정자. A → B
+        - 완전함수종속 - 종속성에 일치하지 않는 속성들이 하나도 없는 경우
+        - 이행적종속 - A → B, B → C 성립할 때, A → C 가 성립하는 종속성
+        - BCNF 해당하지 않는 경우 - A → C, B → C일 경우 C -> B 경우가 발생
+    - 정규화 - 이상현상이 발생하지 않도록 릴레이션(개체, 테이블)을 분해하는 과정
+        - 제1정규화 - 속성이 원자값을 가지도록 만드는 정규화(한 컬럼에 여러값이 들어갈 수 없음)
+        - 제2정규화 - 모든 릴레이션의 속성이 완전함수종속인 정규화
+        - 제3정규화 - 이행적 종속이 발생하지 않도록 정규화
+        - BCNF정규화 - 함수종속성 A → B 가 성립시 모든 결정자 A가 후보키를 만족하는 정규화 
+        - 제4정규화 - 실무 사용 적음. 다치종속성 릴레이션 가진 정규화
+        - 제5정규화 - 실무 사용 적음. 프로젝트-조인 정규형. 조인종속성을 가진 릴레이션
+- 트랜잭션 : [SQL](./day06/db05_transaction2.sql)
+    - 데이터를 다루는 논리적인 작업단위
+    - START TRANSACTION, SAVEPOINT, ROLLBACK [TO SAVEPOINT], COMMIT 트랜잭션 처리
+    - 특징
+        - A(tomicity) 원자성 : 트랜잭션이 원자처럼 더 이상 쪼개지지 않는 하나의 프로그램 단위로 동작해야함(All or Nothing)
+        - C(onsistency) 일관성 
+        - I(solation) 고립성 
+        - D(urability) 지속성 
+    - 동시성 제어 - 락 : [SQL1](./day06/db09_concurrency_control.sql) / [SQL2](./day06/db10_concurrency_control2.sql)
+## 7일차
 - 데이터베이스 관리와 보안
 - 실무실습
-
 - Python GUI로 DB연동 앱 개발
+
+## 8일차
+
+## 9일차
