@@ -75,7 +75,11 @@ select concat(fisrt_name, ' ', last_name) as 'Name', Salary, job_id, commission_
 		  이에 해당 부서의 사원 급여를 12.3% 인상하기로 하였다. 60번 IT 부서 사원의 급여를 12.3% 인상하여
           정수만(반올림) 표시하는 보고서를 작성하시오. 출력 형식은 사번, 이름과 성(Name으로 별칭), 급여, 인상된 급여(Increased Salary로 별칭) 순으로 출력한다.(5행)
 */
-select *
+select * from employees;
+select employee_id
+	 , concat(first_name, ' ', last_name) as 'Name'
+	 , round(salary) as 'Salary'
+	 , round(salary * 1.123) as 'Increased Salary'
   from employees
  where department_id = 60;
 
@@ -213,4 +217,3 @@ select location_id
   from locations
  where city like 'O%' or city like 'o%';
 */
--- 서브쿼리 테스트
