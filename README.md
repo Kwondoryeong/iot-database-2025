@@ -53,7 +53,12 @@ IoT 개발자 데이터베이스 저장소
         - SQL Server 1433
         ```shell
         > docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=12345 -d -p 3306:3306 mysql:latest
-        
+        ```
+        - Docker 부팅시 자동실행 명령어(Docker Terminal)
+        ```shell
+        > docker update --restart=always mysql-container
+        > mysql-container
+        > docker restart mysql container
         ```
     5. 컨테이너 확인(조회)
         ```shell
@@ -350,16 +355,25 @@ IoT 개발자 데이터베이스 저장소
     - 데이터를 다루는 논리적인 작업단위
     - START TRANSACTION, SAVEPOINT, ROLLBACK [TO SAVEPOINT], COMMIT 트랜잭션 처리
     - 특징
-        - A(tomicity) 원자성 : 트랜잭션이 원자처럼 더 이상 쪼개지지 않는 하나의 프로그램 단위로 동작해야함(All or Nothing)
-        - C(onsistency) 일관성 
-        - I(solation) 고립성 
-        - D(urability) 지속성 
+        - A(Atomicity) 원자성 : 트랜잭션이 원자처럼 더 이상 쪼개지지 않는 하나의 프로그램 단위로 동작해야함(All or Nothing)
+        - C(Consistency) 일관성 : 트랜잭션 전후의 데이터가 일관되게 저장되어 있어야함
+        - I(Isolation) 고립성 : 각 트랜잭션은 독립적으로 수행되며 상호 간섭이나 데이터 충돌이 일어나지 않아야함
+        - D(Durability) 지속성 : 트랜잭션이 정상적으로 (정상&부분)완료된 데이터는 반드시 데이터베이스에 기록되어야함
     - 동시성 제어 - 락 : [SQL1](./day06/db09_concurrency_control.sql) / [SQL2](./day06/db10_concurrency_control2.sql)
 ## 7일차
-- 데이터베이스 관리와 보안
-- 실무실습
-- Python GUI로 DB연동 앱 개발
-
+- 인덱스 실습 : [SQL](./day07/db01_index_practice.sql)
+    - 500만건 조회시 price로 검색
+        - 인덱스가 없으면 0.67초 소요
+        - 인덱스를 걸면 0.06초 소요
+- 데이터베이스 관리와 보안 : [SQL](./day07/db02_DB관리.sql)
+- 실무실습 : [SQL](./day07/db03_query_practice.sql)
+    - 서브쿼리 까지
+    
 ## 8일차
+- 실무실습 : []()
+    - 서브쿼리부터
+- 데이터 모딜렝 실습
+- 파이썬 GUI DB연동
 
 ## 9일차
+- 코딩테스트
