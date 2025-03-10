@@ -71,6 +71,7 @@ IoT 개발자 데이터베이스 저장소
         > docker stop mysql-container    # 중지
         > docker start mysql-container   # 시작
         > docker restart mysql-container # 재시작
+        > docker ps                      # 도커 실행중인지 확인
         ```
     7. MySQL Docker 컨테이너 접속
         ```shell
@@ -357,7 +358,7 @@ IoT 개발자 데이터베이스 저장소
     - 특징
         - A(Atomicity) 원자성 : 트랜잭션이 원자처럼 더 이상 쪼개지지 않는 하나의 프로그램 단위로 동작해야함(All or Nothing)
         - C(Consistency) 일관성 : 트랜잭션 전후의 데이터가 일관되게 저장되어 있어야함
-        - I(Isolation) 고립성 : 각 트랜잭션은 독립적으로 수행되며 상호 간섭이나 데이터 충돌이 일어나지 않아야함
+        - I(Isolation) 독립성 : 각 트랜잭션은 독립적으로 수행되며 상호 간섭이나 데이터 충돌이 일어나지 않아야함
         - D(Durability) 지속성 : 트랜잭션이 정상적으로 (정상&부분)완료된 데이터는 반드시 데이터베이스에 기록되어야함
     - 동시성 제어 - 락 : [SQL1](./day06/db09_concurrency_control.sql) / [SQL2](./day06/db10_concurrency_control2.sql)
 ## 7일차
@@ -393,5 +394,29 @@ IoT 개발자 데이터베이스 저장소
     - SQL 연습
 
 ## 9일차
-- Tkinter DB연동 GUI앱 개발
+- Tkinter DB연동 GUI앱 개발 : [Python](./day09/students_regapp.py)
+    1. MySQL madang 데이터베이스 사용하는 madang 사용자 생성, 권한
+    2. madang DB에 students 테이블 생성 
+        ```sql
+        drop table if exists studnets; -- 현재 테이블 삭제
+        create table stduents (
+            std_id integer primary key auto_increment,  -- 기본키 컬럼(auto_increment > MySQL 옵션)
+            std_name varchar(100) not null,
+            std_moblie varchar(20) null,
+            std_regyear int not null
+        );
+
+        -- 더미데이터 추가
+        insert into students (std_name, std_mobile, std_regyear) 
+        values ('홍길동', '010-9999-8888', 2020);
+        ```
+    3. tkinter 템플릿코드 작성 - 기본적인 GUI앱 틀
+
+        <img src='./image/db007.png' width='700'>
+
+    4. 데이터베이스 CRUD 함수 구현
+        - select 기능 구현
+            <img src='./image/db008.png' width='700'>
+- 데이터베이스 연습
+    - SQL, 모델링 연습
 - 코딩테스트

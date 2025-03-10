@@ -160,7 +160,12 @@ SELECT department_id
  DENSE_RANK() : 동등 순위 발생 시 다음 순위 중복 값 무시 후 순위 매김
  ROW_NUMBER() :  동등 순위 자체 인식하지 않고 매 번호 증가하여 순위 매김
  */
- select 
+ select employee_id
+	  , last_name
+      , salary
+      , department_id
+      , rank() over (partition by department_id order by salary desc) as 'Rank'
+      , dense_rank() over (partition by department_id order by salary desc) as 'Dense_Rank' -- 1, 1, 2 (dense : 빽빽한)
+      , row_number() over (partition by department_id order by salary desc) as 'Row_Number' -- 1, 2, 3
    from employees
-  group by job_id
-  order by salary desc;
+   order by department_id asc;
